@@ -7,13 +7,13 @@ class Array
   end
 end
 
-html = ScraperWiki.scrape("http://lobbyists.dpac.tas.gov.au/lobbyist_profiles")
+html = ScraperWiki.scrape("http://lobbyists.dpac.tas.gov.au/lobbyist_register")
 
 # Next we use Nokogiri to extract the values from the HTML source.
 
 require 'nokogiri'
 page = Nokogiri::HTML(html)
-baseurl = "http://lobbyists.dpac.tas.gov.au/lobbyist_profiles"
+baseurl = "http://lobbyists.dpac.tas.gov.au/lobbyist_register"
 urls = page.search(".//table[@id = 'lobbyistsTable']//a").map {|a| a.attributes['href']}
 
 # resume from the last incomplete url if the scraper was terminated
